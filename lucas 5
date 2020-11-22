@@ -1,0 +1,175 @@
+package lucas06062000
+
+
+public  class  Parceira {
+    public  String nome;
+    public  String cnpj;
+
+ Parceira pública ( String  nome , String  cnpj ) {
+    isso . nome = nome;
+    isso . cnpj = cnpj;
+}
+
+public  String  getNome () {
+    return nome;
+}
+
+public  String  getCnpj () {
+    return cnpj;
+}
+
+public  void  setNome ( String  nome ) {
+    isso . nome = nome;
+}
+
+public  void  setCnpj ( String  cnpj ) {
+    isso . cnpj = cnpj;
+}
+
+@Sobrepor
+public  String  toString () {
+    retornar  " Nome do Parceiro: "  + nome +  " \ n CNPJ: "  + cnpj;
+}
+}
+
+
+
+package  lucas06062000
+
+import  java.util.ArrayList ;
+import  java.util.List ;
+
+public  class  Usuario {
+    public  String nome;
+    public  String cpf;
+    public  String senha;
+    public  String email;
+    public  String novoEmail;
+    public  String novaSenha;
+     Lista privada < Endereco > enderecos =  new  ArrayList <> ();
+
+    // Nome, CPF, Senha, Email, CEP, Logradouro, Número, Complemento, Bairro,
+    // Cidade, Estado.
+    public  Usuario ( String  nome , String  cpf , String  senha , String  email ) {
+        isso . nome = nome;
+        isso . cpf = cpf;
+        isso . senha = senha;
+        isso . email = email;
+    }
+
+    public  String  getNome () {
+        return nome;
+    }
+
+    public  String  getCpf () {
+        return cpf;
+    }
+
+    public  String  getSenha () {
+        retornar senha;
+    }
+
+    public  String  getEmail () {
+        email de retorno ;
+    }
+
+    public  String  getNovoEmail () {
+        return novoEmail;
+    }
+
+    public  void  setNome ( String  nome ) {
+        isso . nome = nome;
+    }
+
+    public  void  addEndereco ( Endereco  novo ) {
+        isso . enderecos . adicionar (novo);
+    }
+
+    @Sobrepor
+    public  String  toString () {
+        String stringEnderecos =  " " ;
+        para ( Endereco e :  this . enderecos) {
+            stringEnderecos + = e . para sequenciar();
+        }
+        return  " Nome: "  + nome +  " \ n CPF: "  + cpf +  " \ n Email: "  + email +  " \ n \ n Endereços: "  + stringEnderecos . substring ( 0 , stringEnderecos . length () - 1 );
+    }
+}
+
+
+
+package  lucas06062000
+
+public  class  Validacao {
+
+    public  static  void  validarNome ( String  nome ) {
+        if (nome ==  null ) {
+            lançar  novo  RuntimeException ( " Nome não pode ser nulo! " );
+        }
+        if (nome . comprimento () ==  0 ) {
+            lançar uma  nova  RuntimeException ( " Nome não pode ser vazio! " );
+        }
+        if (nome . divisão ( "  " ) . comprimento ==  1 ) {
+            lançar  novo  RuntimeException ( " O nome deve ser composto por mais de uma palavra! Nome dado: "  + nome);
+        }
+    }
+
+    public  static  void  validarCPF ( String  cpf ) {
+        if (cpf ==  null ) {
+            lançar  nova  RuntimeException ( " CPF não pode ser nulo! " );
+        }
+        if (cpf . comprimento () <  11 ) {
+            lançar uma  nova  RuntimeException ( " CPF não pode conter menos de 11 números. " );
+        }
+    }
+
+    public  static  void  validarCNPJ ( String  cnpj ) {
+        if (cnpj ==  null ) {
+            lançar  novo  RuntimeException ( " CNPJ não pode ser nulo! " );
+        }
+        if (cnpj . comprimento () <  14 ) {
+            lançar uma  nova  RuntimeException ( " CNPJ não pode conter menos de 1 números. " );
+        }
+    }
+
+    public  static  void  validarCEP ( String  cep ) {
+        if (cep ==  null ) {
+            lançar uma  nova  RuntimeException ( " CEP não pode ser nulo! " );
+        }
+        if ( comprimento cep . () <  8 ) {
+            lançar uma  nova  RuntimeException ( " CEP não pode conter menos de 8 números. " );
+        }
+    }
+
+    public  static  void  numNaoNulo ( int  numero ) {
+        if (numero ==  null ) {
+            lance  novo  RuntimeException ( " O número não pode ser nulo! " );
+        }
+    }
+
+    public  static  void  validarEstado ( String  estado ) {
+        if (estado ==  null ) {
+            lance  novo  RuntimeException ( " O estado não pode ser nulo! " );
+        }
+        if (estado . comprimento () ! =  2 ) {
+            lançar  novo  RuntimeException ( " A sigla do estado deve conter 2 caracteres! " );
+        }
+    }
+    
+    public  static  void  validarNovoEmail ( String  email , String  novoEmail ) {
+        if (novoEmail == email) {
+            lance  novo  RuntimeException ( " O novo email não pode ser igual ao email antigo! " );
+        }
+        if (novoEmail ==  null ) {
+            lançar  novo  RuntimeException ( " O novo email não pode ser nulo! " );
+        }
+    }
+
+    public  static  void  validarNovaSenha ( String  senha ) {
+        if (novaSenha == senha) {
+            lançar uma  nova  RuntimeException ( " A nova senha não pode ser igual a senha antiga! " );
+        }
+        if (novoSenha ==  null ) {
+            lance um  novo  RuntimeException ( " A nova senha não pude ser nula! " );
+        }
+    }
+}
