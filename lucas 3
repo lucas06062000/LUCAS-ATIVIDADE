@@ -1,0 +1,114 @@
+# inclui  < stdio.h >
+# inclui  < conio.h >
+# inclui  < string.h >
+
+char senhas [ 30 ] [ 40 ] = { " senha123 " , " Senha123 " , " Senha4321 " , " Password32432 " , " random21321 " , " senha " , " senhas " , " Senha432545 " , " 43543543 " , " 5464562 " , " 9048234 " ," Senhassdf" , " SennhaForte " , " StrongPass " , " Sne99234 " , " 45345345435 " ,
+						" 5646456 " , " 5d4f6ds5f " , " 5sd41f65sd4f " , " 98s74ads41a " , " a5s41d5a4sd " , " as465da6sd " , " 65a4sd65as4d " , " 56as4d65a4sd " , " 56a4sdas6d " , " 6a5s4d56a4sd " , " 654asd654asd " , " 5a4sd56asd " ," 897asd6a4 ", " asdasffa " };
+
+typedef  struct  tipoSenha
+{
+	char senha [ 40 ];
+	struct  tipoSenha * proximo;
+} TSenha;
+
+typedef  struct  tipoLista
+{
+	TSenha * inicio;
+	TSenha * fim;
+} TLista;
+
+TLista tabelaHashing [ 50 ];
+
+void  inicializar ()
+{
+	int i;
+	para (i = 0 ; i < 50 ; i ++)
+	{
+		tabelaHashing [i]. inicio = NULL ;
+		tabelaHashing [i]. fim = NULL ;
+	}
+}
+
+ hash int ( int soma)
+{
+	retornar soma% 50 ;
+}
+
+void  executar ()
+{
+	int quantosNumeros;
+	int i, j;
+	quantosNumeros = 10 ;
+	
+	
+	for (j = 0 ; j < 30 ; j ++) // passa pelas senhas cadastradas
+	{
+		int soma = 0 ;
+		para (i = 0 ; i <quantosNumeros && senhas [j] [i]! = ' \ 0 ' ; i ++)
+		{
+			soma = soma + senhas [j] [i];
+		}
+	
+		int indice = Hash (soma);
+	
+		TSenha * novaSenha;
+		novaSenha = novo TSenha;
+		strcpy (novaSenha-> senha , senhas [j]);
+		novaSenha-> proximo = NULL ;
+	
+		if (tabelaHashing [indice]. inicio == NULL )
+		{
+			tabelaHashing [índice]. inicio = novaSenha;
+			tabelaHashing [índice]. fim = novaSenha;
+		}
+		outro
+		{
+			tabelaHashing [índice]. fim -> proximo = novaSenha;
+			tabelaHashing [índice]. fim = novaSenha;
+		}
+	}
+	
+}
+
+void  apresentador ()
+{
+	int i;
+	for (i = 0 ; i < 50 ; i ++) // para percorrer a tabela Hashing
+	{
+		TSenha * aux;
+		aux = tabelaHashing [i]. inicio ;
+		if (aux! = NULL )
+		{
+			printf ( " \ n Índice:% d - " , i);
+			while (aux! = NULL ) // para percorrer como listas encadeadas
+			{
+				printf ( " % s | " , aux-> senha );
+				aux = aux-> proximo ;
+			}
+		}
+		outro
+		{
+			printf ( " \ n Índice:% d - / " , i);
+		}
+	}
+}
+
+int  main ()
+{
+	int opcao;
+	inicializar ();
+	
+	Faz
+	{
+		printf ( " \ n 1 - Executar hash " );
+		printf ( " \ n 2 - Apresentar hashing de tabela " );
+		printf ( " \ n 0 - Sair " );
+		printf ( " \ n Escolha uma opção: " );
+		scanf ( " % d " , & opcao);
+		switch (opcao)
+		{
+			caso  1 : executar (); pausa ;
+			case  2 : apresentar (); pausa ;
+		}
+	} enquanto (opcao! = 0 );
+}
