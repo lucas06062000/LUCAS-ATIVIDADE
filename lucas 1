@@ -1,0 +1,92 @@
+- ---------- TABELA USUÁRIO -------------------
+CRIAR  TABELA  Usuario {
+	Id_Usuario NUMBER  CONSTRAINT  PRIMARY KEY ,
+	Email VARCHAR2 ( 50 ),
+NÚMERO 	CPF ( 12 ) RESTRIÇÃO ÚNICA,
+	Senha VARCHAR2 ( 100 ),
+	Nome VARCHAR2 ( 50 ),
+	Sobrenome VARCHAR2 ( 50 ),
+};
+
+- ---------- TABELA ENDEREÇO ​​---------------------
+CRIAR  TABELA  Endereco {
+	Id_End NUMBER  CONSTRAINT  PRIMARY KEY ,
+NÚMERO 	CEP ,
+	Estado VARCHAR2 ( 20 ),
+	Cidade VARCHAR2 ( 30 ),
+	Bairro VARCHAR2 ( 30 ),
+	Logradouro VARCHAR2 ( 70 ),
+	Complemento VARCHAR2 ( 10 ),
+	Numero NUMBER ( 10 ),
+};
+
+- ---------- TABELA ROTA --------------------
+CRIAR  TABELA  Rota {
+	Id_Rota NUMBER  CONSTRAINT  PRIMARY KEY ,
+	Bairro VARCHAR2 ( 30 ) CONSTRAINT  FOREIGN KEY ,
+	Descrição VARCHAR2 ( 200 ),
+};
+
+- ---------- TABELA HORARIO ---------------------
+CREATE  TABLE  Horario {
+	Id_hora NUMBER  CONSTRAINT  PRIMARY KEY ,
+	Data_Mes DATE ,
+	Data_Dia VARCHAR2 ( 20 ),
+	Horário TIME 	,
+	Id_Rota NUMBER  CONSTRAINT  FOREIGN KEY ,
+};
+
+- ---------- ALTERAÇÃO TABELA USUÁRIO ---------------
+ALTER  TABLE Usuario ADD Id_End NUMBER  CONSTRAINT  FOREIGN KEY ;
+
+- ---------- ALTERAÇÃO TABELA ROTAS -------------------
+ALTER  TABLE Rota ADD Id_hora TIME  CONSTRAINT  FOREIGN KEY ;
+
+- ---------- INSERÇÃO TABELA USUÁRIO -----------------
+INSERT Usuario (Id_Usuario, Email, CPF, Senha, Nome, Sobrenome)
+VALORES ( 1 , ' usuario1@gmail.com ' , 11111111111 , 1111 , ' Carlos ' , ' Silva ' );
+
+INSERT Usuario (Id_Usuario, Email, CPF, Senha, Nome, Sobrenome)
+VALORES ( 2 , ' usuario2@hotmail.com ' , 22222222222 , 2222 , ' Anna ' , ' Aparecida ' );
+
+INSERT Usuario (Id_Usuario, Email, CPF, Senha, Nome, Sobrenome)
+VALORES ( 3 , ' usuario3@hotmail.com ' , 33333333333 , 3333 , ' José ' , ' Almeida ' );
+
+INSERT Usuario (Id_Usuario, Email, CPF, Senha, Nome, Sobrenome)
+VALUES ( 4 , ' usuario4@gmail.com ' , 44444444444 , 4444 , ' Maria ' , ' Santos ' );
+
+INSERT Usuario (Id_Usuario, Email, CPF, Senha, Nome, Sobrenome)
+VALORES ( 5 , ' usuario5@live.com ' , 55555555555 , 5555 , ' Fábio ' , ' Melo ' );
+
+- ------------- INSERÇÃO TABELA ENDEREÇO ​​-------------------
+INSERIR Endereco (Id_End, CEP, Estado, Cidade, Bairro, Logradouro, Complemento, Numero)
+VALORES ( 1 , 11111111 , ' Paraná ' , ' Maringá ' , ' Zona 7 ' , ' Avenida Colombo ' , ' Casa ' , 1111 );
+
+INSERIR Endereco (Id_End, CEP, Estado, Cidade, Bairro, Logradouro, Complemento, Numero)
+VALORES ( 2 , 22222222 , ' Paraná ' , ' Maringá ' , ' Vila Bosque ' , ' Rua Pioneiro benedito José Jorge ' , ' Casa ' , 222 );
+
+- ------------- INSERÇÃO TABELA ROTA -----------------------
+INSERIR Rota (Id_Rota, Descricao)
+VALORES ( 1 , ' Passar na zona 7 ' );
+
+INSERIR Rota (Id_Rota, Descricao)
+VALORES ( 2 , ' Passar na colombo ' );
+
+INSERIR Rota (Id_Rota, Descricao)
+VALORES ( 3 , ' Passar na colombo e logo em seguida no catuai ' );
+
+- ------------- INSERÇÃO TABELA HORARIO ---------------------
+INSERT (Id_hora, Data_Mes, Data_Dia, Horario)
+VALORES ( 1 , convertido (data e hora ( ' 20/11/2020 ' )), ' Sexta ' , ' 13:00 ' );
+
+INSERT (Id_hora, Data_Mes, Data_Dia, Horario)
+VALORES ( 2 , convertido (data e hora ( ' 23/11/2020 ' )), ' Segunda ' , ' 15:30 ' );
+
+INSERT (Id_hora, Data_Mes, Data_Dia, Horario)
+VALORES ( 3 , convertido (data e hora ( ' 25/11/2020 ' )), ' Quarta ' , ' 14:15 ' );
+
+- ------------- SELEÇÃO HORARIO --------------------------
+SELECIONE  *  DE ROTA INNER JOIN HORARIO ON  Horario . Id_Hora  =  Rota . Id_Hora ;
+
+- ------------- SELEÇÃO DADOS DE ENDEREÇO ​​DE USUÁRIO -----------------------
+SELECIONE  *  DE Endereco INNER PARTICIPE Usuario ON  Usuario . Id_End  =  Endereco . Id_End ;
