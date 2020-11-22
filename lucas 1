@@ -1,4 +1,4 @@
-- ---------- TABELA USUÁRIO -------------------
+- ---------- TABELA USUÁRIO ------------------
 CRIAR  TABELA  Usuario {
 	Id_Usuario NUMBER  CONSTRAINT  PRIMARY KEY ,
 	Email VARCHAR2 ( 50 ),
